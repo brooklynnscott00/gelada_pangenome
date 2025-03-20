@@ -1,26 +1,29 @@
 # Gelada pangenome
 
-### Link data files
+## Link data files
 
-`ln -s /scratch/aguarrac/projects/gelada/assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom.bp.dip.fa.gz assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.fa.gz`
+```shell
+# create a symlink to assembly 1 
+ln -s /scratch/aguarrac/projects/gelada/assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom.bp.dip.fa.gz assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.fa.gz
 
-`ln -s /scratch/aguarrac/projects/gelada/assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom.bp.dip.fa.gz.fai assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.fa.gz.fai`
-create a symlink to assembly 1 
+ln -s /scratch/aguarrac/projects/gelada/assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom/DRT_2020_14_TGE.HiFiONT.hifiasm.dualscafTelom.bp.dip.fa.gz.fai assemblies/DRT_2020_14_TGE.HiFiONT.hifiasm.fa.gz.fai`
 
-```shell 
+# create a symlink to assembly 2
 cd /scratch/brscott4/gelada/data/long_read_genome_assembly/assemblies/joint_pacbio_ont
 cat TID_1039885.hifiasm.hifi-pacbio.hap1.p_ctg.fasta TID_1039885.hifiasm.hifi-pacbio.hap2.p_ctg.fasta > TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa
 bgzip TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa
 samtools faidx TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa.gz
+
+ln -s /scratch/brscott4/gelada/data/long_read_genome_assembly/assemblies/joint_pacbio_ont/TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa.gz assemblies/TID_1039885.HiFiONT.hifiasm.dualscaf.fa.gz 
+
+ln -s /scratch/brscott4/gelada/data/long_read_genome_assembly/assemblies/joint_pacbio_ont/TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa.gz.fai assemblies/TID_1039885.HiFiONT.hifiasm.dualscaf.fa.gz.fai
 ```
-` ln -s /scratch/brscott4/gelada/data/long_read_genome_assembly/assemblies/joint_pacbio_ont/TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa.gz assemblies/TID_1039885.HiFiONT.hifiasm.dualscaf.fa.gz`
 
-`ln -s /scratch/brscott4/gelada/data/long_read_genome_assembly/assemblies/joint_pacbio_ont/TID_1039885.hifiasm.hifi-pacbio.dualscaf.fa.gz.fai assemblies/TID_1039885.HiFiONT.hifiasm.dualscaf.fa.gz.fai`
-create a symlink to assembly 2
+## minimap2 map assemblies to dnazoo
 
-### minimap2 map assemblies to dnazoo
-
-`sbatch --array=1,2 minimap2-alignment.sh`
+```shell
+sbatch --array=1,2 minimap2-alignment.sh
+```
 jobID: 23933983		FAILED
 jobID: 23934200     **DONE**
 
@@ -30,11 +33,13 @@ jobID: 23934200     **DONE**
 conda create -n wfmash -c conda-forge -c bioconda wfmash=0.14.0 -y
 ```
 
-`sbatch --array=1,2 wfmash-alignment.sh` align assemblies to the dnazoo reference with wfmash 
-jobID: 24061623
+```shell
+sbatch --array=1,2 wfmash-alignment.sh
+```
+jobID: 24061623 (currently running)
 
 
-END PROGRESS
+END PROGRESS HERE
 ---------------------------
 
 `sbatch major_rule_partitioning.sh`
