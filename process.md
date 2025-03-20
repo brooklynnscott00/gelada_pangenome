@@ -27,7 +27,7 @@ sbatch --array=1,2 minimap2-alignment.sh
 jobID: 23933983		FAILED
 jobID: 23934200     **DONE**
 
-### wfmash map assemblies to dnazoo 
+## wfmash map assemblies to dnazoo 
 ```shell 
 # install wfmash 
 conda create -n wfmash -c conda-forge -c bioconda wfmash=0.14.0 -y
