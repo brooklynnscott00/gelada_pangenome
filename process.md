@@ -24,10 +24,20 @@ ln -s /scratch/brscott4/gelada/data/long_read_genome_assembly/assemblies/joint_p
 ```shell
 sbatch --array=1,2 minimap2-alignment.sh
 ```
-jobID: 23933983		FAILED
-jobID: 23934200     **DONE**
+jobID: 23933983		FAILED  
+jobID: 23934200     **DONE**  
 
-## wfmash map assemblies to dnazoo 
+## Rename fasta sequence headers
+`sbatch --array=1 major_rule_partitioning.sh`
+jobID: 24094453     **DONE**  
+`sbatch --array=2 major_rule_partitioning.sh`
+jobID: 24094463     **DONE**  
+
+`sbatch --array=1-2 extract-1Mb-seqs.sh`
+jobID: 24095218  	**DONE**
+
+## wfmash map 1Mb assemblies to dnazoo 
+
 ```shell 
 # install wfmash 
 conda create -n wfmash -c conda-forge -c bioconda wfmash=0.14.0 -y
@@ -36,16 +46,17 @@ conda create -n wfmash -c conda-forge -c bioconda wfmash=0.14.0 -y
 ```shell
 sbatch --array=1,2 wfmash-alignment.sh
 ```
-jobID: 24061623 (array=1 failed) (array=2 still running)
-```shell
-sbatch --array=1 wfmash-alignment.sh
-```
-jobID: 24063005
+jobID: 24290337
 
-END PROGRESS HERE
----------------------------
+## re extract sequences headers
+## filter paf for only the sequences that match the major rule partition
+## import into IGV and visualize
 
-`sbatch major_rule_partitioning.sh`
+
+
+
+
+
 
 ### re name fasta sequences headers for pangenome
 

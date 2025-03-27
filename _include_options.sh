@@ -5,8 +5,8 @@ genome_path='/scratch/brscott4/gelada/data/genome/dna_zoo_central_gelada_assembl
 dataset='pangenome'
 
 samples=(
-	DRT_2020_14_TGE 
-	TID_1039885 
+	DRT_2020_14_TGE
+	TID_1039885
 )
 
 chromosome_regions=(
