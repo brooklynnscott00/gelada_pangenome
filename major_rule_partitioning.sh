@@ -9,7 +9,7 @@
 #SBATCH --qos=public
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1
-#SBATCH --mem=4G
+#SBATCH --mem=2G
 #SBATCH --cpus-per-task=1
 
 source /scratch/brscott4/gelada/gelada_pangenome/_include_options.sh
@@ -19,7 +19,5 @@ sample_ID=${samples[${SLURM_ARRAY_TASK_ID} - 1]}
 mkdir -p data/
 
 scripts/majority_rule_partitioning-single.py \
-    mapped_reads/${dataset}.${sample_ID}.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC.wfmash.paf \
-    data/${dataset}.${sample_ID}.contig-to-chr_map.txt
-
- 
+    mapped_reads/${dataset}.${sample_ID}.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC.1Mb.wfmash.paf \
+    data/${dataset}.${sample_ID}.1Mb.contig-to-chr_map.txt

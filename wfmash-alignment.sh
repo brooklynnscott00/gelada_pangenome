@@ -12,12 +12,14 @@
 #SBATCH --mem=164G
 #SBATCH --cpus-per-task=12
 
+source /scratch/brscott4/gelada/gelada_pangenome/_include_options.sh
+sample_ID=${samples[${SLURM_ARRAY_TASK_ID} - 1]}
+
+module load samtools-1.21-gcc-12.1.0
+samtools faidx 1Mb_fastas/${sample_ID}.HiFiONT.hifiasm.dualscaf.1Mb.fa.gz
+
 module load mamba/latest
 source activate wfmash 
-
-source /scratch/brscott4/gelada/gelada_pangenome/_include_options.sh
-
-sample_ID=${samples[${SLURM_ARRAY_TASK_ID} - 1]}
 
 mkdir -p mapped_reads/
 

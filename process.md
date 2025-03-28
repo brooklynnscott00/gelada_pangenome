@@ -27,29 +27,40 @@ sbatch --array=1,2 minimap2-alignment.sh
 jobID: 23933983		FAILED  
 jobID: 23934200     **DONE**  
 
-## Rename fasta sequence headers
-`sbatch --array=1 major_rule_partitioning.sh`
-jobID: 24094453     **DONE**  
-`sbatch --array=2 major_rule_partitioning.sh`
-jobID: 24094463     **DONE**  
-
-`sbatch --array=1-2 extract-1Mb-seqs.sh`
-jobID: 24095218  	**DONE**
-
-## wfmash map 1Mb assemblies to dnazoo 
+## Filter assemblies for sequences > 1Mb, re map with wfmash map, and retain "major" sequences"
 
 ```shell 
 # install wfmash 
 conda create -n wfmash -c conda-forge -c bioconda wfmash=0.14.0 -y
 ```
+Installing wfmash
+
+```shell
+sbatch --array=1-2 extract-1Mb-seqs.sh
+```
+Extracting sequences greater than 1Mb from both assemblies 
+jobID: 24095218  	**DONE**
 
 ```shell
 sbatch --array=1,2 wfmash-alignment.sh
 ```
-jobID: 24290337
+Align to the DNA zoo reference   
+jobID: 24290337		FAILED   
+jobID: 24313436		**DONE**
 
-## re extract sequences headers
-## filter paf for only the sequences that match the major rule partition
+```shell
+sbatch --array=1-2 major_rule_partitioning.sh
+```
+Create contig-to-chr map    
+jobID: 24319874		**DONE**   
+
+```shell
+sbatch --array=1-2 filter_for_major_contigs.sh
+```
+Use the contig to chr map to retain only sequences that map to their "true" chromosome assignment 
+jobID: 24343903		**DONE**    
+
+
 ## import into IGV and visualize
 
 
