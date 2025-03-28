@@ -27,6 +27,8 @@ sbatch --array=1,2 minimap2-alignment.sh
 jobID: 23933983		FAILED  
 jobID: 23934200     **DONE**  
 
+Didn't end up using these pafs, remapping with wfmash.  
+
 ## Filter assemblies for sequences > 1Mb, re map with wfmash map, and retain "major" sequences"
 
 ```shell 
