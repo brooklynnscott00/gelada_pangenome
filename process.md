@@ -40,8 +40,8 @@ Installing wfmash
 ```shell
 sbatch --array=1-2 extract-1Mb-seqs.sh
 ```
-Extracting sequences greater than 1Mb from both assemblies 
-jobID: 24095218  	**DONE**
+Extracting sequences greater than 1Mb from both assemblies       
+jobID: 24095218  	**DONE** 
 
 ```shell
 sbatch --array=1,2 wfmash-alignment.sh
@@ -53,32 +53,16 @@ jobID: 24313436		**DONE**
 ```shell
 sbatch --array=1-2 major_rule_partitioning.sh
 ```
-Create contig-to-chr map    
+Create contig-to-chr map     
 jobID: 24319874		**DONE**   
 
 ```shell
 sbatch --array=1-2 filter_for_major_contigs.sh
 ```
-Use the contig to chr map to retain only sequences that map to their "true" chromosome assignment 
+Use the contig to chr map to retain only sequences that map to their "true" chromosome assignment          
 jobID: 24343903		**DONE**    
 
 
-## import into IGV and visualize
 
 
-
-
-
-
-
-### re name fasta sequences headers for pangenome
-
-`sbatch --array=1,2 rename_fasta_sequences.sh`
-jobID: 23961582     FAILED
-jobID: 24054997     FAILED
-jobID: 24055258     FAILED
-jobID: 24055286     FAILED no python, change to python3
-jobID: 24055373     FAILED
-jobID: 24055445     FAILED
-jobID: 24055499     
-
+git
