@@ -1,4 +1,4 @@
-genome='Theropithecus_gelada_HiC'
+genome='Theropithecus_gelada_HiC_1Mb'
 
 genome_path='/scratch/brscott4/gelada/data/genome/dna_zoo_central_gelada_assembly/Theropithecus_gelada_HiC.1Mbp.fa.gz'
 

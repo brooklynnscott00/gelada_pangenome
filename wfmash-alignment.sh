@@ -15,13 +15,10 @@
 source /scratch/brscott4/gelada/gelada_pangenome/_include_options.sh
 sample_ID=${samples[${SLURM_ARRAY_TASK_ID} - 1]}
 
-module load samtools-1.21-gcc-12.1.0
-samtools faidx 1Mb_fastas/${sample_ID}.HiFiONT.hifiasm.dualscaf.1Mb.fa.gz
-
 module load mamba/latest
 source activate wfmash 
 
 mkdir -p mapped_reads/
 
-wfmash ${genome_path} 1Mb_fastas/${sample_ID}.HiFiONT.hifiasm.dualscaf.1Mb.fa.gz -s 5k -p 90 -m \
-    > mapped_reads/${dataset}.${sample_ID}.HiFiONT.hifiasm.dualscaf.aligned-${genome}.1Mb.wfmash.paf
+wfmash ${genome_path} assemblies/${sample_ID}.HiFiONT.hifiasm.dualscaf.fa.gz -s 5k -p 90 -m \
+    > mapped_reads/${dataset}.${sample_ID}.HiFiONT.hifiasm.dualscaf.aligned-${genome}.wfmash.paf

@@ -2,7 +2,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-type=END
 #SBATCH --mail-user=brscott4@asu.edu
-#SBATCH --job-name="rename fasta sequences"
+#SBATCH --job-name="major rule partioning"
 #SBATCH --output=out/slurm-%A_%a.out
 #SBATCH --error=out/slurm-%A_%a.err
 #SBATCH --partition=htc
@@ -19,5 +19,5 @@ sample_ID=${samples[${SLURM_ARRAY_TASK_ID} - 1]}
 mkdir -p data/
 
 scripts/majority_rule_partitioning-single.py \
-    mapped_reads/${dataset}.${sample_ID}.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC.1Mb.wfmash.paf \
-    data/${dataset}.${sample_ID}.1Mb.contig-to-chr_map.txt
+    mapped_reads/${dataset}.${sample_ID}.HiFiONT.hifiasm.dualscaf.aligned-${genome}.wfmash.paf \
+    data/${dataset}.${sample_ID}.${genome}.contig-to-chr_map.txt

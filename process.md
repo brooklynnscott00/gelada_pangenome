@@ -43,26 +43,43 @@ sbatch --array=1-2 extract-1Mb-seqs.sh
 Extracting sequences greater than 1Mb from both assemblies       
 jobID: 24095218  	**DONE** 
 
+## Map assemblies with wfmash to dnazoo 1Mb
+
 ```shell
 sbatch --array=1,2 wfmash-alignment.sh
 ```
-Align to the DNA zoo reference   
-jobID: 24290337		FAILED   
-jobID: 24313436		**DONE**
+Align assemblies to the DNA zoo reference (1Mb)
+jobID: 24454587		  
+jobID: 24457742		**DONE**   
 
 ```shell
 sbatch --array=1-2 major_rule_partitioning.sh
 ```
-Create contig-to-chr map     
-jobID: 24319874		**DONE**   
+jobID: 24480338		**DONE**   
 
 ```shell
 sbatch --array=1-2 filter_for_major_contigs.sh
 ```
-Use the contig to chr map to retain only sequences that map to their "true" chromosome assignment          
-jobID: 24343903		**DONE**    
+Use the contig to chr map to retain only sequences that map to their "true" chromosome assignment            
+jobID: 24480437		**DONE**   
+
+```shell
+grep 'HiC_scaffold_7' pangenome.TID_1039885.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC_1Mb.major_rule_filtered.wfmash.paf > pangenome.TID_1039885.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC_1Mb.major_rule_filtered.HiC_scaffold_7.wfmash.paf
+
+grep 'h1' pangenome.TID_1039885.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC_1Mb.major_rule_filtered.HiC_scaffold_7.wfmash.paf > pangenome.TID_1039885.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC_1Mb.major_rule_filtered.HiC_scaffold_7.wfmash.H1.paf
+
+grep 'h2' pangenome.TID_1039885.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC_1Mb.major_rule_filtered.HiC_scaffold_7.wfmash.paf > pangenome.TID_1039885.HiFiONT.hifiasm.dualscaf.aligned-Theropithecus_gelada_HiC_1Mb.major_rule_filtered.HiC_scaffold_7.wfmash.H2.paf
+
+```
+grep chromosome 7 from the hybrid assemlby, then separate into H1 and H2 files.   
 
 
 
+## rename fasta sequences
 
-git
+```shell
+sbatch --array=1,2 rename_fasta_sequences.sh
+```
+Rename the sequences headers in fasta files to include sample name and haplotype information
+jobID: 24344550
+jobID: 24346643
